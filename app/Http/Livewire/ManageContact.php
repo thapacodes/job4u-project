@@ -3,11 +3,11 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\User;
+use App\Models\Contact;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
-class ManageUser extends Component
+class ManageContact extends Component
 {
     public $search;
     public $what_search = 'name';
@@ -23,8 +23,8 @@ class ManageUser extends Component
     }
 
     public function delete($id) {
-        DB::table('users')->where('id', $id)->delete();
-        session()->flash('page-message', 'User successfully deleted.');
+        DB::table('contacts')->where('id', $id)->delete();
+        session()->flash('page-message', 'Contact deleted.');
         $this->mount();
         $this->render();
     }
@@ -32,8 +32,8 @@ class ManageUser extends Component
     public function render()
     {
         $search = '%'.$this->search.'%';
-        return view('livewire.manage-user', [
-            'pageArray' => User::where($this->what_search, 'like', $search)->paginate(10),
+        return view('livewire.manage-contact', [
+            'pageArray' => Contact::where($this->what_search, 'like', $search)->paginate(10),
         ]);
     }
 }

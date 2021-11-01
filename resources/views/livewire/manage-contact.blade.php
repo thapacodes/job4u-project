@@ -1,19 +1,14 @@
 <section class="container-fluid">
     <div>
-        <h3>Manage User</h3>
+        <h3>Manage Contact</h3>
         <div class="mt-3">
             <div class="input-group input-group-lg">
                 <span class="input-group-text rounded-0 bg-transparent p-0" id="search_page">
                     <select wire:model="what_search" class="form-select rounded-0 m-0 w-100 h-100">
                         <option value="name">Name</option>
                         <option value="email">Email</option>
-                        <option value="role">Role</option>
-                        <option value="about">About</option>
-                        <option value="education">Education</option>
-                        <option value="experience">Experience</option>
-                        <option value="skill">Skill</option>
-                        <option value="contact">Contact</option>
-                        <option value="address">Address</option>
+                        <option value="subject">Subject</option>
+                        <option value="description">Description</option>
                     </select>
                 </span>
                 <input wire:model="search" type="text" class="form-control rounded-0 bg-transparent"
@@ -36,15 +31,8 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Avater</th>
-                        <th scope="col">Resume</th>
-                        <th scope="col">About</th>
-                        <th scope="col">Education</th>
-                        <th scope="col">Experience</th>
-                        <th scope="col">Skill</th>
-                        <th scope="col">Contact</th>
-                        <th scope="col">Address</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Description</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -54,35 +42,20 @@
                             <tr>
                                 <td>{{ $page->name }}</td>
                                 <td>{{ $page->email }}</td>
-                                <td>{{ $page->role }}</td>
-                                <td>{{ $page->avater }}</td>
-                                <td>{{ $page->resume }}</td>
-                                <td>{!! $page->about !!}</td>
-                                <td>{!! $page->education !!}</td>
-                                <td>{!! $page->experience !!}</td>
-                                <td>{!! $page->skill !!}</td>
-                                <td>{{ $page->contact }}</td>
-                                <td>{{ $page->address }}</td>
+                                <td>{{ $page->subject }}</td>
                                 <td>
-                                    @if($page->role != 'admin')
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-danger btn-sm"
-                                            wire:click="delete({{ $page->id }})">Delete</button>
-                                        </div>
-                                    @endif
-                                    <button class="btn btn-secondary">N/a</button>
+                                    <p>{{ $page->description }}</p>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-danger btn-sm"
+                                        wire:click="delete({{ $page->id }})">Delete</button>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td>Empty</td>
-                            <td>Empty</td>
-                            <td>Empty</td>
-                            <td>Empty</td>
-                            <td>Empty</td>
-                            <td>Empty</td>
-                            <td>Empty</td>
                             <td>Empty</td>
                             <td>Empty</td>
                             <td>Empty</td>

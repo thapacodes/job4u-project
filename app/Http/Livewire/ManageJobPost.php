@@ -30,10 +30,15 @@ class ManageJobPost extends Component
     }
 
     public function approved($id) {
-        $email = User::where('id', $id)->get()[0]['email'];
-        Mail::to($email)->send(new VerifiedUserMail());
-        DB::table('users')->where('id', $id)->update(['approval' => 'true']);
-        session()->flash('approve-message', 'User Successfully approved.');
+        $status = Job::where('id', $id)->get()[0]['status'];
+        if ($status != 'approve') {
+            DB::table('jobs')->where('id', $id)->update(['status' => 'approve']);
+            session()->flash('approve-message', 'Job Post Approved');
+        }
+        else {
+            DB::table('jobs')->where('id', $id)->update(['status' => '']);
+            session()->flash('approve-message', 'Job Post Disapproved');
+        }
         $this->mount();
         $this->render();
     }

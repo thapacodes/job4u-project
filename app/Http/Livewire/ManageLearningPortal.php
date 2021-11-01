@@ -3,14 +3,14 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\User;
+use App\Models\LearningPortal;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
-class ManageUser extends Component
+class ManageLearningPortal extends Component
 {
     public $search;
-    public $what_search = 'name';
+    public $what_search = 'title';
 
     use WithPagination;
 
@@ -23,8 +23,8 @@ class ManageUser extends Component
     }
 
     public function delete($id) {
-        DB::table('users')->where('id', $id)->delete();
-        session()->flash('page-message', 'User successfully deleted.');
+        DB::table('learning_portals')->where('id', $id)->delete();
+        session()->flash('page-message', 'Learning Portal resources deleted.');
         $this->mount();
         $this->render();
     }
@@ -32,8 +32,8 @@ class ManageUser extends Component
     public function render()
     {
         $search = '%'.$this->search.'%';
-        return view('livewire.manage-user', [
-            'pageArray' => User::where($this->what_search, 'like', $search)->paginate(10),
+        return view('livewire.manage-learning-portal', [
+            'pageArray' => LearningPortal::where($this->what_search, 'like', $search)->paginate(10),
         ]);
     }
 }

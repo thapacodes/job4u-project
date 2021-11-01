@@ -34,6 +34,105 @@
                 <livewire:bread-crumb-dashboard-second-level :link_1="$link_1" />
                 <livewire:manage-job-post />
             @stop
+        @elseif ($page == 'manage-job-newsletters')
+            @php
+                $link_1 = 'Manage Job NewsLetters';
+            @endphp
+            @section('content')
+                <br />
+                <livewire:bread-crumb-dashboard-second-level :link_1="$link_1" />
+                <livewire:manage-newsletters />
+            @stop
+        @elseif ($page == 'manage-contact')
+            @php
+                $link_1 = 'Manage Contact';
+            @endphp
+            @section('content')
+                <br />
+                <livewire:bread-crumb-dashboard-second-level :link_1="$link_1" />
+                <livewire:manage-contact />
+            @stop
+        @elseif ($page == 'create-faq')
+            @php
+                $link_1 = 'Create FAQ';
+            @endphp
+            @section('content')
+                <br />
+                <livewire:bread-crumb-dashboard-second-level :link_1="$link_1" />
+                <livewire:create-faq />
+            @stop
+        @elseif ($page == 'manage-faq')
+            @php
+                $link_1 = 'Manage FAQ';
+            @endphp
+            @section('content')
+                <br />
+                <livewire:bread-crumb-dashboard-second-level :link_1="$link_1" />
+                <livewire:manage-faq />
+            @stop
+        @elseif ($page == 'create-blog')
+            @php
+                $link_1 = 'Create Blog';
+            @endphp
+            @section('content')
+                <br />
+                <livewire:bread-crumb-dashboard-second-level :link_1="$link_1" />
+                <livewire:create-blog />
+            @stop
+        @elseif ($page == 'create-blog-post')
+            @php
+                $link_1 = 'Create Blog Post';
+            @endphp
+            @section('content')
+                <br />
+                <livewire:bread-crumb-dashboard-second-level :link_1="$link_1" />
+                <livewire:create-blog />
+            @stop
+        @elseif ($page == 'manage-blog-post')
+            @php
+                $link_1 = 'Manage Blog Post';
+            @endphp
+            @section('content')
+                <br />
+                <livewire:bread-crumb-dashboard-second-level :link_1="$link_1" />
+                <livewire:manage-blog />
+            @stop
+        @elseif ($page == 'create-new-page')
+            @php
+                $link_1 = 'Create New Page';
+            @endphp
+            @section('content')
+                <br />
+                <livewire:bread-crumb-dashboard-second-level :link_1="$link_1" />
+                <livewire:create-page />
+            @stop
+        @elseif ($page == 'manage-pages')
+            @php
+                $link_1 = 'Manage Other Pages';
+            @endphp
+            @section('content')
+                <br />
+                <livewire:bread-crumb-dashboard-second-level :link_1="$link_1" />
+                <livewire:manage-page />
+            @stop
+        @elseif ($page == 'add-learning-portal')
+            @php
+                $link_1 = 'Add Learning Portal';
+            @endphp
+            @section('content')
+                <br />
+                <livewire:bread-crumb-dashboard-second-level :link_1="$link_1" />
+                <livewire:add-learning-portal />
+            @stop
+        @elseif ($page == 'manage-learning-portal')
+            @php
+                $link_1 = 'Manage Learning Portal';
+            @endphp
+            @section('content')
+                <br />
+                <livewire:bread-crumb-dashboard-second-level :link_1="$link_1" />
+                <livewire:manage-learning-portal />
+            @stop
         @endif
     @endif
     @if (Auth::user()['role'] == 'employeer')

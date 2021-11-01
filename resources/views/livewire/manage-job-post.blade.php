@@ -20,7 +20,25 @@
                     placeholder="Search Data">
             </div>
         </div>
-        <div class="table-responsive">
+        <div>
+            @if (session()->has('page-message'))
+                <div class="alert alert-danger rounded-0 alert-dismissible fade show mt-3" role="alert">
+                    {{ session('page-message') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+                </div>
+            @endif
+        </div>
+        <div>
+            @if (session()->has('approve-message'))
+                <div class="alert alert-success rounded-0 alert-dismissible fade show mt-3" role="alert">
+                    {{ session('approve-message') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+                </div>
+            @endif
+        </div>
+        <div class="table-responsive mt-3">
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -37,24 +55,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <div>
-                        @if (session()->has('page-message'))
-                            <div class="alert alert-danger rounded-0 alert-dismissible fade show mt-3" role="alert">
-                                {{ session('page-message') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @endif
-                    </div>
-                    <div>
-                        @if (session()->has('approve-message'))
-                            <div class="alert alert-success rounded-0 alert-dismissible fade show mt-3" role="alert">
-                                {{ session('approve-message') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @endif
-                    </div>
                     @if (count($pageArray) > 0)
                         @foreach ($pageArray as $page)
                             <tr>
@@ -65,14 +65,26 @@
                                 <td>{{ $page->salary }}</td>
                                 <td>{!! $page->experience !!}</td>
                                 <td>{!! $page->education !!}</td>
-                                <td>{{ $page->uploaded_by }}</td>
+                                @php
+                                    $user = \App\Models\User::where('id', $page->uploaded_by)->first();
+                                @endphp
+                                @if($user != null)
+                                <td>{{ $user->name }}</td>
+                                @else
+                                <td>N/a</td>
+                                @endif
                                 <td>{{ $page->status }}</td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger btn-sm"
                                         wire:click="delete({{ $page->id }})">Delete</button>
-                                        <button type="button" class="btn btn-danger btn-sm"
-                                        wire:click="approve({{ $page->id }})">Delete</button>
+                                        @if ($page->status == 'approve')
+                                            <button type="button" class="btn btn-danger btn-sm"
+                                        wire:click="approved({{ $page->id }})">Disapprove</button>
+                                        @else
+                                        <button type="button" class="btn btn-primary btn-sm"
+                                        wire:click="approved({{ $page->id }})">Approve</button>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -94,11 +106,11 @@
                         </tr>
                     @endif
                 </tbody>
-                <div class="mt-3 d-flex justify-content-start">
-                    {{ $pageArray->links('components.general.pagination') }}
-                </div>
             </table>
         </div>
+    </div>
+    <div class="mt-3 d-flex justify-content-start">
+        {{ $pageArray->links('components.general.pagination') }}
     </div>
     <br>
     <br>
