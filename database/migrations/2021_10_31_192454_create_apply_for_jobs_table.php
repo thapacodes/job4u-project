@@ -15,8 +15,17 @@ class CreateApplyForJobsTable extends Migration
     {
         Schema::create('apply_for_jobs', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('job_id');
-            $table->bigInteger('applied_by_id');
+            $table->string('job_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('avater')->nullable();
+            $table->string('resume')->nullable();
+            $table->mediumText('about')->nullable();
+            $table->mediumText('education')->nullable();
+            $table->mediumText('experience')->nullable();
+            $table->mediumText('skill')->nullable();
+            $table->string('contact')->nullable();
+            $table->string('address')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

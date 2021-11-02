@@ -11,7 +11,16 @@ class ApplyForJob extends Model
 
     protected $fillable = [
         'job_id',
-        'applied_by_id',
+        'name',
+        'email',
+        'avater',
+        'resume',
+        'about',
+        'education',
+        'experience',
+        'skill',
+        'contact',
+        'address',
         'status'
     ];
 }

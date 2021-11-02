@@ -17,6 +17,7 @@ class CreateFAQSTable extends Migration
             $table->id();
             $table->string('question');
             $table->mediumText('answer');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

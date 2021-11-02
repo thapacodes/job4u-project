@@ -1,6 +1,16 @@
-<div class="container mt-5">
-    <h2 class="fw-700">{{ $category }}</h2>
-    {{-- <h2>Job Category Name</h2> --}}
+<section>
+    <div>
+        <h3>Job Applied For</h3>
+        <div>
+            @if (session()->has('page-message'))
+                <div class="alert alert-danger rounded-0 alert-dismissible fade show mt-3" role="alert">
+                    {{ session('page-message') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+        </div>
+    </div>
+
     @if (count($pageArray) > 0)
         <div class="row">
             <!-- Display Searched Content Here! -->
@@ -31,7 +41,7 @@
                                         @else
                                             <p class="m-0 text-danger">{{ $company->name }}</p>
                                         @endif
-                                        <h3 class="my-3">{{ $page->title }}</h3>
+                                        <h3 class="my-3">{{ $page->job_title }}</h3>
                                         <p class="m-0 text-ellipses">{{ $page->description }}</p>
                                         <div class="mt-2">
                                             @if ($page->work_region == null)
@@ -66,7 +76,7 @@
                             <div class="card-footer px-4">
                                 <div class="row">
                                     <div class="col-lg-3">
-                                        <p class="m-0">Posted at :
+                                        <p class="m-0">Applied at :
                                             <strong>{{ \Carbon\Carbon::parse($page->created_at)->format('d M Y') }}</strong>
                                         </p>
                                     </div>
@@ -84,6 +94,10 @@
                                         <p class="m-0">Salary Estimate :<br /> <strong>Rs.
                                                 {{ $page->salary }}</strong></p>
                                     </div>
+                                    <div class="col-lg-3">
+                                        <p class="m-0">Status :<br /> <strong>
+                                                {{ $page->status }}</strong></p>
+                                    </div>
                                 </div>
                             </div>
                         </a>
@@ -99,12 +113,14 @@
     @else
         <div class="card mt-4">
             <div class="card-body">
-                <p class="m-0 fs-20 fw-500 text-dark">No result found</p>
+                <p class="m-0 fs-20 fw-500 text-dark">You have yet to apply for any job post</p>
             </div>
         </div>
     @endif
-    <div class="mt-5">
-        <a href="{{ env('APP_URL') }}/search?category={{ $category }}"
-            class="btn btn-outline-danger rounded-0">More</a>
+
+    <div class="mt-3 d-flex justify-content-start">
+        {{ $pageArray->links('components.general.pagination') }}
     </div>
-</div>
+    <br>
+    <br>
+</section>

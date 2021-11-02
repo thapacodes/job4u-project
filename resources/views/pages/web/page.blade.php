@@ -38,10 +38,10 @@
             <livewire:bread-crumb-second-level :link_1="$link_1" />
             @if (Auth::user())
                 @php
-                    $user_email = Auth::user()['email'];
+                    $user_id = Auth::user()['id'];
                 @endphp
                 @if (Auth::user()['role'] == 'employeer')
-                    <livewire:post-a-job-form :user_email="$user_email" />
+                    <livewire:post-a-job-form :user_id="$user_id" />
                 @else
                     <section class="container mb-5">
                         <div class="card rounded-0">

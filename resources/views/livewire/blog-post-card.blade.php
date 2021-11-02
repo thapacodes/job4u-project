@@ -8,7 +8,7 @@
                             class="form-label d-flex align-items-center m-0 mt-3 fw-500 visually-hidden">
                             Choose Category
                         </label>
-                        <select id="job_category" wire:model="category" class="form-control form-control-lg rounded-0 fw-700">
+                        <select id="job_category" wire:model="category" class="form-select form-select-lg rounded-0 fw-700">
                             <option value="">All Categories</option>
                             <option value="Day in a life">Day in a life</option>
                             <option value="Hiring">Hiring</option>

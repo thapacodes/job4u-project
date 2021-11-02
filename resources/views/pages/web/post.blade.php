@@ -19,6 +19,16 @@
                 $category = $data[0]->category;
                 if(Auth::user()) {
                     $userid = Auth::user()['id'];
+                    $name = Auth::user()['name'];
+                    $email = Auth::user()['email'];
+                    $avater = Auth::user()['avater'];
+                    $resume = Auth::user()['resume'];
+                    $about = Auth::user()['about'];
+                    $education = Auth::user()['education'];
+                    $experience = Auth::user()['experience'];
+                    $skill = Auth::user()['skill'];
+                    $contact = Auth::user()['contact'];
+                    $address = Auth::user()['address'];
                 }
                 else {
                     $userid = 'none';
@@ -62,10 +72,12 @@
                                             {{ \Carbon\Carbon::parse($data[0]->created_at)->format('d M Y') }}
                                         </p>
                                     </div>
+                                    @if ($company != null)
                                     <div class="mt-3">
                                         <img class="w-100" style="max-height: 270px; object-fit:cover;"
                                             src="{{ $company->logo }}" alt="company logo">
                                     </div>
+                                    @endif
                                     <div class="mt-3">
                                         <div class="row">
                                             <div class="col-lg-6 mb-4">
@@ -107,7 +119,21 @@
                                                 </button>
                                             </div>
                                             <div x-cloak x-show="open">
-                                                <livewire:apply-for-jobs :title="$data[0]->title" :jobid="$data[0]->id" :userid="$userid" />
+                                                <livewire:apply-for-jobs 
+                                                    :title="$data[0]->title" 
+                                                    :jobid="$data[0]->id" 
+                                                    :userid="$userid" 
+                                                    :email="$email"
+                                                    :name="$name"
+                                                    :avater="$avater"
+                                                    :resume="$resume"
+                                                    :about="$about"
+                                                    :education="$education"
+                                                    :experience="$experience"
+                                                    :skill="$skill"
+                                                    :contact="$contact"
+                                                    :address="$address" 
+                                                />
                                             </div>
                                         </div>
                                     </div>

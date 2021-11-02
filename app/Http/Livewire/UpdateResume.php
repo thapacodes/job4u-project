@@ -6,15 +6,16 @@ use Livewire\Component;
 use App\Models\User;
 use Livewire\WithFileUploads;
 
-class ChangeProfilePicture extends Component
+class UpdateResume extends Component
 {
     use WithFileUploads;
 
     public $avater;
+    public $resume;
     public $user_id;
 
     protected $rules = [
-        'avater' => 'required|image|max:1024',
+        'avater' => 'required|mimes:pdf|max:61440',
     ];
 
     public function updated($propertyName)
@@ -24,18 +25,18 @@ class ChangeProfilePicture extends Component
 
     public function save() {
         $this->validate();
-        $path = $this->avater->store('pictures/profile', 'custom');
+        $path = $this->avater->store('files/resume', 'custom');
         $path = route('home').'/uploads'.'/'.$path;
 
         $user = User::find($this->user_id);
-        $user->avater = $path;
+        $user->resume = $path;
 
         $user->save();
-        session()->flash('page-message', 'Profile picture successfully Updated.');
+        session()->flash('page-message', 'Resume successfully Updated.');
     }
 
     public function render()
     {
-        return view('livewire.change-profile-picture');
+        return view('livewire.update-resume');
     }
 }

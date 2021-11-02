@@ -7,7 +7,7 @@
                         <label for="job_category" class="form-label d-flex align-items-center m-0 mt-3 fw-500 visually-hidden">
                             Resource Category
                         </label>
-                        <select id="job_category" wire:model="category" class="form-control form-control-lg rounded-0 fw-700">
+                        <select id="job_category" wire:model="category" class="form-select form-select-lg rounded-0 fw-700">
                             <option value="">Category</option>
                             <option value="Design">Design</option>
                             <option value="Full-stack-programming">Full-stack-programming</option>

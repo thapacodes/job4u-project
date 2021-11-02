@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlogsTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateBlogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->string('thumbnail')->nullable();
-            $table->string('title', 255);
-            $table->string('slug', 255);
-            $table->string('category', 100);
-            $table->longText('description');
+            $table->mediumText('message')->nullable();
+            $table->bigInteger('notification_for')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });
@@ -32,6 +29,6 @@ class CreateBlogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('notifications');
     }
 }
